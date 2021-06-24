@@ -57,7 +57,7 @@ I am an Anime themed group management bot. You can find my list of available com
 
 HELP_STRINGS = """
 Hey there! My name is *{}*.
-I help admins manage their groups with my Power Level! 
+I help admins manage their groups! 
 
 *Main* commands available:
  • /help: PM's you this message.
@@ -195,7 +195,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="☑️ Add Sung Jin-Woo to your group",
+                            text="☑️ Add 001 to your group",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],
@@ -204,8 +204,8 @@ def start(update: Update, context: CallbackContext):
                              text="🚨 Support 🚨",
                              url=f"https://t.me/{SUPPORT_CHAT}"),
                          InlineKeyboardButton(
-                             text="🗡️ Solo Leveling 🗡️",
-                             url="https://t.me/Solo_Leveling_Webtoon")
+                             text="About Me",
+                             url="https://anilist.co/character/126290")
                      ]]))
                      
                     
