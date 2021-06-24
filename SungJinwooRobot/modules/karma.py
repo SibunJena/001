@@ -5,8 +5,8 @@ from SungJinwooRobot.utils.filter_groups import karma_positive_group, karma_nega
 from pyrogram import filters
 
 
-regex_upvote = r"^((?i)\+|\+\+|\+1|thank you|thanks|👍)$"
-regex_downvote = r"^(\-|\-\-|\-1|👎)$"
+regex_upvote = r"^((?i)\+\+\+|\+\+\+\+|\+\+\+\+\+|\+1|awesome \+\+\+|nice \+\+\+|cool \+\+\+|cool \+\+|cool \+|nice \+\+|nice \+|lmao 😂)$"
+regex_downvote = r"^((?i)\-\-\-\-\-|not nice \-\-\-\-\-|)$"
 
 
 @pgram.on_message(
@@ -38,7 +38,7 @@ async def upvote(_, message):
         new_karma = {"karma": karma}
         await update_karma(chat_id, await int_to_alpha(user_id), new_karma)
     await message.reply_text(
-        f'Incremented Karma of {user_mention} By 1 \nTotal Points: {karma}'
+        f'Increased Reputation of {user_mention} By 1 \nTotal Points: {karma}'
     )
 
 
@@ -71,18 +71,18 @@ async def downvote(_, message):
         new_karma = {"karma": karma}
         await update_karma(chat_id, await int_to_alpha(user_id), new_karma)
     await message.reply_text(
-        f'Decremented Karma Of {user_mention} By 1 \nTotal Points: {karma}'
+        f'Decreased Reputation Of {user_mention} By 1 \nTotal Points: {karma}'
     )
 
 
-@pgram.on_message(filters.command("karma") & filters.group)
+@pgram.on_message(filters.command("reputation") & filters.group)
 
 async def karma(_, message):
     chat_id = message.chat.id
 
     if not message.reply_to_message:
         karma = await get_karmas(chat_id)
-        msg = f"**Karma list of {message.chat.title}:- **\n"
+        msg = f"**Reputation list of {message.chat.title}:- **\n"
         limit = 0
         karma_dicc = {}
         for i in karma:
@@ -111,11 +111,11 @@ async def karma(_, message):
             karma = 0
             await message.reply_text(f'**Total Points**: __{karma}__')
 
-__mod_name__ = "Karma"
-__help__ = """*Upvote* - Use upvote keywords like "+", "+1", "thanks", etc. to upvote a message.
+__mod_name__ = "Reputation"
+__help__ = """*Upvote* - Use upvote keywords like "+++", "++++", "+++++", "cool +++", "nice +++", "awesome +++", "lmao 😂" to upvote a message.
 
-*Downvote* - Use downvote keywords like "-", "-1", etc. to downvote a message.
+*Downvote* - Use downvote keywords like "not nice ---", "---", etc. to downvote a message.
 
-Reply to a message with `/karma` to check a user's karma.
-Send `/karma` without replying to any message to chek karma list of top 10 users."""
+Reply to a message with `/reputation` to check a user's reputation.
+Send `/reputation` without replying to any message to chek reputation list of top 10 users."""
 
